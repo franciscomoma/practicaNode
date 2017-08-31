@@ -1,0 +1,15 @@
+version: '2'
+services:
+    mongo:
+        image: mongo:3.0
+    fblog:
+        build: .
+        volumes:
+            - .:/app
+            - ../logs:/logs
+        ports:
+            - 3000:3000
+        command: sh run.sh
+        working_dir: /app
+        extra_hosts:
+            - "dockerhost:172.31.33.202"
